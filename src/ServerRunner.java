@@ -53,7 +53,7 @@ public class ServerRunner extends Thread {
                 		outWriter.close();
                 	} else {
                 		PrintWriter outWriter = new PrintWriter(out, true);
-                		outWriter.println("File non trovato");
+                		outWriter.println("File '" + pathDownload + "' non trovato");
                 		outWriter.close();
                 	}
                 	
