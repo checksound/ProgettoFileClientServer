@@ -3,6 +3,8 @@
 Implementazione di un file server: il client chiede il trasgerimento dei dati di un file 
 di testo e binario, che gli viene inviato dal server.
 
+Il server [Server](./src/Server.java) e il Client [Client](./src/Client.java).
+
 ## Esempi
 
 Esempio di HTTP Webserver
