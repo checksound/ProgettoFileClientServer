@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Client {
 
-	static int PORT = 80;
+	static int PORT = 8900;
 
 	private enum TYPE {
 		CHARACTER, BYTE
@@ -56,7 +56,9 @@ public class Client {
 				// doDunpOnFile(fileName, byteArray.toByteArray());
 			
 			} else {
-
+				
+				System.out.println("Risposta dal server:\n");
+				
 				while ((serverOut = reader.readLine()) != null) {
 					System.out.println(serverOut);
 				}

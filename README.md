@@ -11,7 +11,41 @@ nella sottodirectory *product* di *files*.
 
 In caso il file non sia presente, viene inviato un messaggio d'errore. 
 
-**TODO:** se viene specificata una directory deve fare il directory listing. 
+Se viene specificata una directory deve fare il directory listing. 
+
+Ad esempio, inserendo dal client la richiesta:
+
+```
+/
+```
+
+l'output di risposta dal server sarebbe:
+
+```
+index.html (272 bytes)
+javalogo.gif (2512 bytes)
+moreinfo.png (3315 bytes)
+product/ (0 bytes)
+```
+
+invece inserendo nella richiesta:
+
+```
+product
+```
+
+l'output di risposta del server sarebbe:
+
+```
+prod1.jpg (582 bytes)
+prod2.jpg (767 bytes)
+prod3.jpg (616 bytes)
+prod4.jpg (703 bytes)
+```
+
+ 
+
+
 
 ## Esempi
 

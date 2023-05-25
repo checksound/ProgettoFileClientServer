@@ -3,10 +3,13 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.Socket;
+import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.EnumSet;
 
 public class ServerRunner extends Thread {
     private Socket clientSocket;
@@ -28,7 +31,7 @@ public class ServerRunner extends Thread {
             
             Path pathDownload = Paths.get(BASE_DIR, path.toString());
             
-            System.out.println("File richiesto: " + pathDownload);
+            System.out.println("Path richiesto: " + pathDownload);
                 f = pathDownload.toFile();
                 if (f.exists() && !f.isDirectory()) {
                     if (f.getName().endsWith(".jpg") || f.getName().endsWith(".png") || f.getName().endsWith(".gif")) {
@@ -48,8 +51,15 @@ public class ServerRunner extends Thread {
                 } else {
                 	if(f.isDirectory()) {
                 		// do listing
-                		PrintWriter outWriter = new PrintWriter(out, true);
-                		outWriter.println("Do LISTING!");
+                		PrintWriter outWriter = new PrintWriter(out);
+                		                		
+                		EnumSet<FileVisitOption> opts = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
+                		
+                		StringWriter writer = new StringWriter();
+                		PrintFiles pf = new PrintFiles(writer);
+                		Files.walkFileTree(pathDownload, opts, 1, pf);
+                		outWriter.print(writer.toString());
+                		outWriter.flush();
                 		outWriter.close();
                 	} else {
                 		PrintWriter outWriter = new PrintWriter(out, true);
