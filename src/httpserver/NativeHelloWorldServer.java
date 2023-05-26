@@ -1,3 +1,5 @@
+package httpserver;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -9,7 +11,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
-public class NativeHelloWorldServerVT {
+public class NativeHelloWorldServer {
 
     public static String fileRoot = "/Users/mayankc/Work/source/perfComparisons/testdata/";
 
@@ -20,7 +22,7 @@ public class NativeHelloWorldServerVT {
     public static void main(String[] args) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(3000), 0);
         server.createContext("/", new MyHandler());
-        server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
+        server.setExecutor(Executors.newCachedThreadPool());
         server.start();
     }
 
